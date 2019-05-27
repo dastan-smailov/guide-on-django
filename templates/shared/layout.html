@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+     <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <title>{% block title %}Guide{% endblock title %}</title>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style>
+        .content-wrapper {
+          padding-left: 300px;
+        }
+        .brand-logo {
+            margin-left:28px;
+        }
+        .sidenav {
+            top:65px;
+            padding-top:8px;
+            height: calc(100% - 65px )!important;
+        }
+        nav {
+            -webkit-box-shadow: 0 0px 0px 0 rgba(0,0,0,0.14),0 0px 0px 0px rgba(0,0,0,0.12),0 1px 1px 0 rgba(0,0,0,0.2);
+            box-shadow: 0 1px 1px 0 rgba(0,0,0,0.14),0 1px 1px -1px rgba(0,0,0,0.12),0 0px 0px 0 rgba(0,0,0,0.2);
+        }
+        .container {
+            padding-top:15px;
+        }
+    
+        @media only screen and (max-width : 992px) {
+          .content-wrapper{
+            padding-left: 0;
+          }
+          .brand-logo {
+            margin-left: 0;
+          }
+          .sidenav {
+            top:0;
+            padding-top:0;
+            height: calc(100% + 42px )!important;
+          }
+        }
+        </style>
+  </head>
+  <body>
+
+    <ul id="slide-out" class="sidenav sidenav-fixed">
+            <li><a class="waves-effect" href="{% url 'home' %}">Главная</a></li>
+            <li><div class="divider"></div></li>
+            <li><a class="subheader">Категории</a></li>
+        {% for category in categories %}
+            <li><a class="waves-effect" href="{% url 'category' category.id %}">{{ category.title }}</a></li>
+        {% endfor %}
+    </ul>  
+    
+    <div class="navbar-fixed">
+        <nav class="white navbar-fixed">
+            <a href="{% url 'home' %}" class="brand-logo black-text">Guide</a>
+            <a href="#" data-target="slide-out" class="sidenav-trigger black-text"><i class="material-icons">menu</i></a>
+        </nav>
+    </div>
+    
+    <div class="content-wrapper">
+        <div class="container">
+            {% block content%}{% endblock content %}
+        </div>
+    </div>    
+
+    <!--JavaScript at end of body for optimized loading-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.sidenav').sidenav();
+        });
+    </script>
+  </body>
+</html>  
+
+
+

@@ -1,0 +1,23 @@
+{% extends "shared/layout.html" %}
+{% block title %}Category{% endblock title %}
+
+{% block content %}
+
+    {% for place in places %}
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">{{ place.title }}</span>
+                    <p>
+                        <b>Адрес:</b> {{ place.address }} <br>
+                        {% if place.phone != ''  %}
+                            <b>Телефон:</b> {{ place.phone }} <br>
+                        {% endif %}
+                        {% if place.siteurl != ''  %}
+                            <b>Сайт:</b> <a href="{{ place.siteurl }}">{{ place.siteurl }}</a> <br>
+                        {% endif %}    
+                    </p>
+            </div>
+        </div>
+    {% endfor %}  
+
+{% endblock content %}
